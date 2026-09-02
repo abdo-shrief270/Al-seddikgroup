@@ -1274,13 +1274,13 @@
     <input
         type="hidden"
         name="_captcha"
-        value="true"
+        value="false"
     >
 
     <input
         type="hidden"
         name="_next"
-        value="https://al-seddikgroup.com/thanks.html"
+        value="https://al-seddikgroup.com/thanks"
     >
 
     <input
@@ -1304,6 +1304,8 @@
             name="الاسم"
             placeholder="اكتب اسمك"
             autocomplete="name"
+            minlength="2"
+            maxlength="80"
             required
         >
 
@@ -1324,6 +1326,8 @@
             autocomplete="tel"
             inputmode="tel"
             pattern="[0-9+ ()-]{8,20}"
+            maxlength="20"
+            dir="ltr"
             required
         >
 
@@ -1343,6 +1347,8 @@
             placeholder="name@example.com"
             autocomplete="email"
             inputmode="email"
+            maxlength="254"
+            dir="ltr"
         >
 
     </div>
@@ -1360,6 +1366,8 @@
             name="المنطقة"
             placeholder="مثال: القاهرة الجديدة"
             autocomplete="address-level2"
+            minlength="2"
+            maxlength="100"
             required
         >
 
@@ -1378,7 +1386,7 @@
             required
         >
 
-            <option value="">
+            <option value="" disabled selected>
                 اختر الخدمة
             </option>
 
@@ -1410,6 +1418,9 @@
             name="تفاصيل المشروع"
             rows="4"
             placeholder="اكتب تفاصيل بسيطة عن المشروع..."
+            minlength="10"
+            maxlength="2000"
+            required
         ></textarea>
 
     </div>
