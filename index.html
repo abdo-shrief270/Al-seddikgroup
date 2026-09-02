@@ -84,11 +84,11 @@
 
     <link
         rel="stylesheet"
-        href="style.min.css?v=20260903-2"
+        href="style.min.css?v=20260903-3"
         media="print"
         onload="this.media='all'"
     >
-    <noscript><link rel="stylesheet" href="style.min.css?v=20260903-2"></noscript>
+    <noscript><link rel="stylesheet" href="style.min.css?v=20260903-3"></noscript>
 
     <!-- Icons -->
     <link
@@ -1429,10 +1429,6 @@
         <i class="fa-solid fa-paper-plane"></i>
     </button>
 
-    <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden>
-        تم إرسال طلبك بنجاح. سنتواصل معك في أقرب وقت.
-    </p>
-
 </form>
 
                 </div>
@@ -1803,8 +1799,23 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <div
+        class="toast"
+        id="notificationToast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden
+    >
+        <i class="fa-solid fa-circle-check toast-icon" aria-hidden="true"></i>
+        <p class="toast-message" id="toastMessage"></p>
+        <button class="toast-close" id="toastClose" type="button" aria-label="إغلاق الإشعار">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+    </div>
 
-    <script src="script.min.js?v=20260903-2"></script>
+
+    <script src="script.min.js?v=20260903-3"></script>
 
 </body>
 </html>

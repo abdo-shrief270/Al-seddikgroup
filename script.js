@@ -513,8 +513,42 @@ document.addEventListener("keydown", function (event) {
 const bookingForm =
     document.getElementById("bookingForm");
 
-const formStatus =
-    document.getElementById("formStatus");
+const notificationToast =
+    document.getElementById("notificationToast");
+
+const toastMessage =
+    document.getElementById("toastMessage");
+
+const toastClose =
+    document.getElementById("toastClose");
+
+let toastTimer;
+
+function hideToast() {
+
+    notificationToast.classList.remove("show");
+
+    window.setTimeout(() => {
+        notificationToast.hidden = true;
+    }, 300);
+}
+
+function showToast(message, isError = false) {
+
+    window.clearTimeout(toastTimer);
+
+    toastMessage.textContent = message;
+    notificationToast.classList.toggle("error", isError);
+    notificationToast.hidden = false;
+
+    window.requestAnimationFrame(() => {
+        notificationToast.classList.add("show");
+    });
+
+    toastTimer = window.setTimeout(hideToast, 5000);
+}
+
+toastClose.addEventListener("click", hideToast);
 
 bookingForm.addEventListener("submit", async event => {
 
@@ -530,9 +564,6 @@ bookingForm.addEventListener("submit", async event => {
     submitButton.setAttribute("aria-busy", "true");
     submitButton.innerHTML =
         'جارٍ الإرسال <i class="fa-solid fa-spinner fa-spin"></i>';
-
-    formStatus.hidden = true;
-    formStatus.classList.remove("error");
 
     try {
 
@@ -554,15 +585,15 @@ bookingForm.addEventListener("submit", async event => {
             throw new Error(result.message || "Form submission failed");
         }
 
-        window.location.assign("/?submitted=true#booking");
+        window.location.assign("/?submitted=true");
 
     } catch (error) {
 
         console.error("Form submission failed:", error);
-        formStatus.textContent =
-            "تعذر إرسال الطلب. يرجى المحاولة مرة أخرى أو التواصل معنا عبر الهاتف.";
-        formStatus.classList.add("error");
-        formStatus.hidden = false;
+        showToast(
+            "تعذر إرسال الطلب. يرجى المحاولة مرة أخرى أو التواصل معنا عبر الهاتف.",
+            true
+        );
 
         submitButton.disabled = false;
         submitButton.removeAttribute("aria-busy");
@@ -575,7 +606,10 @@ const submissionParams =
 
 if (submissionParams.get("submitted") === "true") {
 
-    formStatus.hidden = false;
+    window.addEventListener("load", () => {
+        showToast("تم إرسال طلبك بنجاح. سنتواصل معك في أقرب وقت.");
+    }, { once: true });
+
     submissionParams.delete("submitted");
 
     const remainingQuery = submissionParams.toString();
