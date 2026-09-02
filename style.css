@@ -2,6 +2,24 @@
    VARIABLES
 ========================= */
 
+@font-face {
+    font-family: "Cairo";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: optional;
+    src: url("fonts/cairo-arabic.woff2") format("woff2");
+    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
+@font-face {
+    font-family: "Cairo";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: optional;
+    src: url("fonts/cairo-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
     --dark: #0b0d0f;
     --dark-soft: #111518;
@@ -354,7 +372,7 @@ select {
             rgba(0,0,0,.90),
             rgba(0,0,0,.35)
         ),
-        url("images/hero.jpg") center/cover;
+        url("images/hero.webp") center/cover;
 
     color: white;
 
@@ -560,6 +578,17 @@ select {
 
 .section {
     padding: 110px 0;
+}
+
+.services-section,
+.projects-section,
+.process-section,
+.reviews-section,
+.booking-section,
+.contact-section,
+.footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
 }
 
 .section-heading {
@@ -2225,7 +2254,7 @@ body {
             rgba(8,10,12,.96),
             rgba(8,10,12,.96)
         ),
-        url("images/hero.jpg") center/cover fixed;
+            url("images/hero.webp") center/cover fixed;
 
     color: var(--white);
 }
@@ -2442,7 +2471,7 @@ body {
                 rgba(8,10,12,.97),
                 rgba(8,10,12,.97)
             ),
-            url("images/hero.jpg") center/cover;
+            url("images/hero.webp") center/cover;
     }
 
     .map-container {

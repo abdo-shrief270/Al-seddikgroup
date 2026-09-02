@@ -267,10 +267,10 @@ const projectsData = {
         description: "تنفيذ الوجهات الكلادينج و الزجاج",
 
         images: [
-            "images/project-1.jpg",
-            "images/project-1-1.jpg",
-            "images/project-1-2.jpg",
-            "images/project-1-3.jpg"
+            "images/project-1.webp",
+            "images/project-1-1.webp",
+            "images/project-1-2.webp",
+            "images/project-1-3.webp"
         ]
     },
 
@@ -279,10 +279,10 @@ const projectsData = {
         category: "أعمال معمارية",
         description: "تفيذ الوجهات  ",
         images: [
-            "images/project-2.jpg",
-            "images/project-2-1.jpg",
-            "images/project-2-2.jpg",
-            "images/project-2-3.jpg"
+            "images/project-2.webp",
+            "images/project-2-1.webp",
+            "images/project-2-2.webp",
+            "images/project-2-3.webp"
         ]
     },
 
@@ -291,10 +291,10 @@ const projectsData = {
         category: "اعمال معمارية",
         description: "تصميم وتنفيذ الهيكل الخارجي للمشروع.",
         images: [
-            "images/project-3.jpg",
-            "images/project-3-1.jpg",
-            "images/project-3-2.jpg",
-            "images/project-3-3.jpg"
+            "images/project-3.webp",
+            "images/project-3-1.webp",
+            "images/project-3-2.webp",
+            "images/project-3-3.webp"
         ]
     },
 
@@ -303,10 +303,10 @@ const projectsData = {
         category: "أعمال معمارية",
         description: "تنفيذ الأعمال المعمارية لمشروع تجاري.",
         images: [
-            "images/project-4.jpg",
-            "images/project-4-1.jpg",
-            "images/project-4-2.jpg",
-            "images/project-4-3.jpg"
+            "images/project-4.webp",
+            "images/project-4-1.webp",
+            "images/project-4-2.webp",
+            "images/project-4-3.webp"
         ]
     },
 
@@ -315,7 +315,7 @@ const projectsData = {
         category: "أعمال إنشائية",
         description: "تنفيذ الأعمال الإنشائية  للكوبري.",
         images: [
-            "images/project-5.jpg"
+            "images/project-5.webp"
         ]
     },
 
@@ -324,10 +324,10 @@ const projectsData = {
         category: "أعمال معمارية",
         description: "تنفيذ ابواب و شبابيك و shutter",
         images: [
-            "images/project-6.jpg",
-            "images/project-6-1.jpg",
-            "images/project-6-2.jpg",
-            "images/project-6-3.jpg"
+            "images/project-6.webp",
+            "images/project-6-1.webp",
+            "images/project-6-2.webp",
+            "images/project-6-3.webp"
         ]
     },
     project7: {
@@ -335,10 +335,10 @@ const projectsData = {
         category: "أعمال معمارية",
         description: "تنفيذ ابواب و شبابيك  ",
         images: [
-            "images/project-7.jpg",
-            "images/project-7-1.jpg",
-            "images/project-7-2.jpg",
-            "images/project-7-3.jpg"
+            "images/project-7.webp",
+            "images/project-7-1.webp",
+            "images/project-7-2.webp",
+            "images/project-7-3.webp"
         ]
     }
 
