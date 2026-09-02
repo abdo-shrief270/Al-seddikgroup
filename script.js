@@ -25,24 +25,25 @@ const mobileMenuBtn =
 const mobileNav =
     document.getElementById("mobileNav");
 
+const mobileMenuIcon =
+    mobileMenuBtn.querySelector("i");
+
+function setMobileMenu(open) {
+
+    mobileNav.classList.toggle("active", open);
+    mobileMenuBtn.setAttribute("aria-expanded", String(open));
+    mobileMenuBtn.setAttribute(
+        "aria-label",
+        open ? "إغلاق القائمة" : "فتح القائمة"
+    );
+
+    mobileMenuIcon.classList.toggle("fa-bars", !open);
+    mobileMenuIcon.classList.toggle("fa-xmark", open);
+}
+
 mobileMenuBtn.addEventListener("click", () => {
 
-    mobileNav.classList.toggle("active");
-
-    const icon =
-        mobileMenuBtn.querySelector("i");
-
-    if (mobileNav.classList.contains("active")) {
-
-        icon.classList.remove("fa-bars");
-        icon.classList.add("fa-xmark");
-
-    } else {
-
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
-
-    }
+    setMobileMenu(!mobileNav.classList.contains("active"));
 
 });
 
@@ -53,17 +54,22 @@ document
 
         link.addEventListener("click", () => {
 
-            mobileNav.classList.remove("active");
-
-            const icon =
-                mobileMenuBtn.querySelector("i");
-
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
+            setMobileMenu(false);
 
         });
 
     });
+
+document.addEventListener("click", event => {
+
+    if (
+        mobileNav.classList.contains("active") &&
+        !mobileNav.contains(event.target) &&
+        !mobileMenuBtn.contains(event.target)
+    ) {
+        setMobileMenu(false);
+    }
+});
 
 
 /* =========================
@@ -222,30 +228,16 @@ filterButtons.forEach(button => {
             const category =
                 card.dataset.category;
 
-            if (
+            const isVisible =
                 filter === "all" ||
-                category === filter
-            ) {
+                category === filter;
 
-                card.style.display = "block";
-
-                setTimeout(() => {
-                    card.style.opacity = "1";
-                    card.style.transform = "scale(1)";
-                }, 30);
-
-            } else {
-
-                card.style.opacity = "0";
-                card.style.transform = "scale(.96)";
-
-                setTimeout(() => {
-                    card.style.display = "none";
-                }, 250);
-
-            }
+            card.hidden = !isVisible;
 
         });
+
+        projectIndex = 0;
+        updateProjects();
 
     });
 
@@ -409,7 +401,12 @@ function openProjectGallery(projectId) {
 
     projectModal.classList.add("active");
 
+    projectModal.setAttribute("aria-hidden", "false");
+    projectModal.inert = false;
+
     document.body.classList.add("modal-open");
+
+    modalClose.focus();
 }
 
 
@@ -420,6 +417,9 @@ function openProjectGallery(projectId) {
 function closeProjectGallery() {
 
     projectModal.classList.remove("active");
+
+    projectModal.setAttribute("aria-hidden", "true");
+    projectModal.inert = true;
 
     document.body.classList.remove("modal-open");
 
@@ -488,6 +488,14 @@ document.addEventListener("keydown", function (event) {
 
     if (
         event.key === "Escape" &&
+        mobileNav.classList.contains("active")
+    ) {
+        setMobileMenu(false);
+        mobileMenuBtn.focus();
+    }
+
+    if (
+        event.key === "Escape" &&
         projectModal.classList.contains("active")
     ) {
 
@@ -499,84 +507,41 @@ document.addEventListener("keydown", function (event) {
 
 
 /* =========================
-   BOOKING FORM
+   FORM SUCCESS
 ========================= */
-/*
+
 const bookingForm =
     document.getElementById("bookingForm");
 
-bookingForm.addEventListener(
-    "submit",
-    event => {
+bookingForm.addEventListener("submit", () => {
 
-        event.preventDefault();
+    const submitButton =
+        bookingForm.querySelector(".form-submit");
 
-        const name =
-            document.getElementById("name").value;
+    submitButton.disabled = true;
+    submitButton.setAttribute("aria-busy", "true");
+    submitButton.innerHTML =
+        'جارٍ الإرسال <i class="fa-solid fa-spinner fa-spin"></i>';
+});
 
-        const phone =
-            document.getElementById("phone").value;
+const submissionParams =
+    new URLSearchParams(window.location.search);
 
-        const location =
-            document.getElementById("location").value;
+if (submissionParams.get("submitted") === "true") {
 
-        const service =
-            document.getElementById("service").value;
+    const formStatus =
+        document.getElementById("formStatus");
 
-        const message =
-            document.getElementById("message").value;
+    formStatus.hidden = false;
+    submissionParams.delete("submitted");
 
+    const remainingQuery = submissionParams.toString();
+    const cleanUrl =
+        `${window.location.pathname}${remainingQuery ? `?${remainingQuery}` : ""}${window.location.hash}`;
 
-        const services = {
+    window.history.replaceState({}, "", cleanUrl);
+}
 
-            construction:
-                "أعمال إنشائية",
-
-            architecture:
-                "أعمال معمارية",
-
-            kitchens:
-                "مطابخ"
-
-        };
-
-
-        const text =
-`طلب معاينة جديد
-
-الاسم: ${name}
-
-الهاتف: ${phone}
-
-المنطقة: ${location}
-
-الخدمة: ${services[service]}
-
-تفاصيل المشروع:
-${message}`;
-*/
-
-        /*
-         * غيّر الرقم للرقم الحقيقي
-         * بصيغة دولية بدون +
-         */
-/*
-        const whatsappNumber =
-            "201000000000";
-
-
-        const whatsappURL =
-            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
-
-
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
-
-    }
-);
-*/
 
 /* =========================
    SMOOTH ANCHOR
@@ -763,12 +728,17 @@ function getProjectsPerView() {
 }
 
 
+function getVisibleProjectCards() {
+
+    return Array.from(
+        document.querySelectorAll(".projects-track .project-card")
+    ).filter(card => !card.hidden);
+}
+
+
 function updateProjects() {
 
-    const projectCards =
-        document.querySelectorAll(
-            ".projects-track .project-card"
-        );
+    const projectCards = getVisibleProjectCards();
 
     if (!projectCards.length) return;
 
@@ -791,16 +761,13 @@ function updateProjects() {
 
 projectsNext.addEventListener("click", () => {
 
-    const projectCards =
-        document.querySelectorAll(
-            ".projects-track .project-card"
-        );
+    const projectCards = getVisibleProjectCards();
 
     const perView =
         getProjectsPerView();
 
     const maxIndex =
-        projectCards.length - perView;
+        Math.max(0, projectCards.length - perView);
 
     if (projectIndex < maxIndex) {
 
@@ -819,16 +786,13 @@ projectsNext.addEventListener("click", () => {
 
 projectsPrev.addEventListener("click", () => {
 
-    const projectCards =
-        document.querySelectorAll(
-            ".projects-track .project-card"
-        );
+    const projectCards = getVisibleProjectCards();
 
     const perView =
         getProjectsPerView();
 
     const maxIndex =
-        projectCards.length - perView;
+        Math.max(0, projectCards.length - perView);
 
     if (projectIndex > 0) {
 
@@ -849,10 +813,7 @@ window.addEventListener(
     "resize",
     () => {
 
-        const projectCards =
-            document.querySelectorAll(
-                ".projects-track .project-card"
-            );
+        const projectCards = getVisibleProjectCards();
 
         const perView =
             getProjectsPerView();

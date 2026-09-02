@@ -1786,6 +1786,297 @@ select {
 
 }
 
+.form-honeypot {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+}
+
+.form-status {
+    grid-column: 1 / -1;
+    padding: 12px 15px;
+
+    border: 1px solid rgba(199,167,108,.35);
+    border-radius: 7px;
+    background: rgba(199,167,108,.1);
+    color: #dec48f;
+
+    font-size: 13px;
+    text-align: center;
+}
+
+.form-submit:disabled {
+    opacity: .7;
+    cursor: wait;
+    transform: none;
+}
+
+
+/* =========================
+   RESPONSIVE HARDENING
+========================= */
+
+body {
+    overflow-x: hidden;
+}
+
+.mobile-nav {
+    max-height: calc(100dvh - 95px);
+    overflow-y: auto;
+}
+
+.map-link {
+    position: relative;
+    display: block;
+    min-width: 0;
+}
+
+.map-overlay-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.map-container iframe {
+    pointer-events: none;
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50%;
+    background: rgba(8,10,12,.75);
+    color: white;
+
+    font-size: 18px;
+}
+
+.modal-image img {
+    width: 100%;
+    height: min(58vh, 560px);
+    object-fit: cover;
+}
+
+.modal-thumbnails {
+    display: flex;
+    gap: 10px;
+
+    padding: 14px 20px 0;
+    overflow-x: auto;
+}
+
+.modal-thumb {
+    width: 76px;
+    height: 60px;
+    flex: 0 0 auto;
+
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    opacity: .6;
+    cursor: pointer;
+}
+
+.modal-thumb.active {
+    border-color: var(--gold);
+    opacity: 1;
+}
+
+.modal-info {
+    padding: 18px 25px 28px;
+}
+
+.modal-info > span {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.modal-info h2 {
+    margin-block: 4px 8px;
+    color: var(--white);
+    font-size: clamp(24px, 4vw, 36px);
+}
+
+.modal-info p {
+    color: var(--gray);
+}
+
+@media (max-width: 1050px) {
+    .logo {
+        width: 165px;
+    }
+}
+
+@media (max-width: 820px) {
+    .header,
+    .header.scrolled {
+        padding: 8px 0;
+    }
+
+    .logo {
+        width: 145px;
+    }
+
+    .logo img {
+        max-height: 64px;
+    }
+
+    .mobile-nav {
+        top: 80px;
+    }
+
+    .review-card {
+        flex-basis: calc((100% - 22px) / 2);
+    }
+
+    .stat-item:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        min-height: 100svh;
+        padding-block: 105px 70px;
+    }
+
+    .hero-content {
+        padding-top: 0;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 13vw, 53px);
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+
+    .projects-slider,
+    .reviews-slider {
+        gap: 8px;
+    }
+
+    .projects-track {
+        gap: 15px;
+    }
+
+    .projects-track .project-card,
+    .review-card {
+        flex-basis: 100%;
+    }
+
+    .projects-track .project-image img {
+        height: clamp(280px, 105vw, 390px);
+    }
+
+    .slider-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 12px;
+    }
+
+    .contact-item,
+    .contact-item > div:last-child {
+        min-width: 0;
+    }
+
+    .contact-item strong {
+        overflow-wrap: anywhere;
+    }
+
+    .project-modal .modal-content {
+        max-height: calc(100dvh - 20px);
+    }
+
+    .modal-image img {
+        height: 42vh;
+        min-height: 240px;
+    }
+
+    .modal-info {
+        padding: 16px 18px 22px;
+    }
+}
+
+@media (max-width: 380px) {
+    .container {
+        width: calc(100% - 22px);
+    }
+
+    .logo {
+        width: 125px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-item,
+    .stat-item:nth-child(2),
+    .stat-item:last-child {
+        border-left: 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .stat-item:last-child {
+        border-bottom: 0;
+    }
+
+    .project-filter {
+        width: 100%;
+    }
+
+    .filter-btn {
+        flex: 1 1 calc(50% - 8px);
+    }
+
+    .booking-box {
+        padding-inline: 16px;
+    }
+}
+
+@media (hover: none) {
+    .project-overlay {
+        opacity: 1;
+    }
+}
+
+.project-overlay:focus-visible {
+    opacity: 1;
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
 /* =========================
    PROJECT GALLERY FIX
 ========================= */
@@ -2152,6 +2443,15 @@ body {
                 rgba(8,10,12,.97)
             ),
             url("images/hero.jpg") center/cover;
+    }
+
+    .map-container {
+        height: 350px;
+        min-height: 350px;
+    }
+
+    .map-container iframe {
+        min-height: 350px;
     }
 
 }
