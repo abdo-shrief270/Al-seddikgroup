@@ -513,24 +513,67 @@ document.addEventListener("keydown", function (event) {
 const bookingForm =
     document.getElementById("bookingForm");
 
-bookingForm.addEventListener("submit", () => {
+const formStatus =
+    document.getElementById("formStatus");
+
+bookingForm.addEventListener("submit", async event => {
+
+    event.preventDefault();
 
     const submitButton =
         bookingForm.querySelector(".form-submit");
+
+    const defaultButtonContent =
+        submitButton.innerHTML;
 
     submitButton.disabled = true;
     submitButton.setAttribute("aria-busy", "true");
     submitButton.innerHTML =
         'جارٍ الإرسال <i class="fa-solid fa-spinner fa-spin"></i>';
+
+    formStatus.hidden = true;
+    formStatus.classList.remove("error");
+
+    try {
+
+        const response = await fetch(bookingForm.action, {
+            method: "POST",
+            body: new FormData(bookingForm),
+            headers: {
+                Accept: "application/json"
+            }
+        });
+
+        const result = await response.json();
+
+        if (
+            !response.ok ||
+            result.success === false ||
+            result.success === "false"
+        ) {
+            throw new Error(result.message || "Form submission failed");
+        }
+
+        window.location.assign("/?submitted=true#booking");
+
+    } catch (error) {
+
+        console.error("Form submission failed:", error);
+        formStatus.textContent =
+            "تعذر إرسال الطلب. يرجى المحاولة مرة أخرى أو التواصل معنا عبر الهاتف.";
+        formStatus.classList.add("error");
+        formStatus.hidden = false;
+
+        submitButton.disabled = false;
+        submitButton.removeAttribute("aria-busy");
+        submitButton.innerHTML = defaultButtonContent;
+    }
 });
 
 const submissionParams =
     new URLSearchParams(window.location.search);
 
 if (submissionParams.get("submitted") === "true") {
-
-    const formStatus =
-        document.getElementById("formStatus");
 
     formStatus.hidden = false;
     submissionParams.delete("submitted");

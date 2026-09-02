@@ -1843,6 +1843,12 @@ select {
     transform: none;
 }
 
+.form-status.error {
+    border-color: rgba(220,80,80,.4);
+    background: rgba(220,80,80,.1);
+    color: #ffb3b3;
+}
+
 
 /* =========================
    RESPONSIVE HARDENING
