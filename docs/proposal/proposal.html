@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>عرض سعر — مجموعة الصديق</title>
+<style>
+@font-face{font-family:"Cairo";src:url(__FONT_AR__) format("woff2");font-weight:200 900;font-display:block;unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF;}
+@font-face{font-family:"Cairo";src:url(__FONT_LAT__) format("woff2");font-weight:200 900;font-display:block;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215;}
+
+:root{
+  --dark:#0b0d0f; --dark-soft:#111518; --white:#ffffff; --light:#f6f6f4;
+  --gray:#6b7075; --border:#e3e3de; --gold:#c7a76c; --gold-dark:#aa8b52;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+@page{size:A4;margin:0;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{font-family:"Cairo",sans-serif;color:var(--dark);background:#fff;font-size:10.5pt;line-height:1.75;}
+
+.page{width:210mm;min-height:297mm;padding:17mm 16mm 20mm;position:relative;page-break-after:always;display:flex;flex-direction:column;}
+.page:last-child{page-break-after:auto;}
+
+/* ---------- COVER ---------- */
+.cover{background:var(--dark);color:var(--white);justify-content:space-between;padding:22mm 16mm;}
+.cover::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 85% 12%, rgba(199,167,108,.16), transparent 55%),
+  radial-gradient(circle at 10% 90%, rgba(199,167,108,.09), transparent 50%);}
+.cover>*{position:relative;z-index:1;}
+.cover-logo{width:46mm;filter:brightness(0) invert(1);opacity:.95;}
+.cover-kicker{color:var(--gold);letter-spacing:.14em;font-size:9pt;font-weight:700;margin-bottom:6mm;}
+.cover h1{font-size:30pt;font-weight:800;line-height:1.35;letter-spacing:-.01em;}
+.cover h1 span{color:var(--gold);}
+.cover .sub{color:#b9bcbf;font-size:11.5pt;margin-top:5mm;max-width:130mm;line-height:1.9;}
+.rule{height:2px;width:26mm;background:var(--gold);margin:8mm 0;}
+.cover-meta{display:flex;gap:6mm;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);padding-top:7mm;}
+.cover-meta div{flex:1;min-width:38mm;}
+.cover-meta .lbl{color:var(--gold);font-size:8pt;font-weight:700;letter-spacing:.08em;margin-bottom:1.5mm;}
+.cover-meta .val{color:#fff;font-size:10.5pt;font-weight:600;}
+
+/* ---------- SHARED ---------- */
+.sec-kicker{color:var(--gold-dark);font-size:8.5pt;font-weight:800;letter-spacing:.1em;margin-bottom:2mm;}
+h2{font-size:19pt;font-weight:800;letter-spacing:-.01em;line-height:1.4;}
+h2 .num{color:var(--gold);}
+h3{font-size:11.5pt;font-weight:800;margin-bottom:2.5mm;}
+p{color:#3a3f44;}
+.lead{font-size:11pt;color:#4a4f54;margin-top:3mm;line-height:1.95;}
+.rng{unicode-bidi:isolate;direction:ltr;}
+.hr{height:1px;background:var(--border);margin:7mm 0;}
+
+.note{background:var(--light);border-inline-start:3px solid var(--gold);padding:4mm 5mm;border-radius:2px;font-size:9.5pt;color:#4a4f54;line-height:1.8;}
+.note b{color:var(--dark);}
+
+/* feature groups */
+.grp{margin-bottom:5mm;break-inside:avoid;}
+.grp-h{display:flex;align-items:center;gap:3mm;margin-bottom:2.5mm;}
+.grp-h .dot{width:5.5mm;height:5.5mm;border-radius:50%;background:var(--gold);color:#fff;font-size:8pt;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;}
+.grp-h h3{margin:0;font-size:11pt;}
+ul{list-style:none;padding-inline-start:8.5mm;}
+li{position:relative;font-size:9.8pt;color:#41464b;line-height:1.72;margin-bottom:1.4mm;}
+li::before{content:"";position:absolute;inset-inline-start:-5mm;top:2.6mm;width:1.8mm;height:1.8mm;border-radius:50%;background:var(--gold);opacity:.75;}
+li b{color:var(--dark);font-weight:700;}
+
+/* price card */
+.price{margin-top:auto;background:var(--dark);color:#fff;border-radius:3px;padding:6mm 7mm;display:flex;align-items:center;justify-content:space-between;gap:6mm;break-inside:avoid;}
+.price .l .lbl{color:var(--gold);font-size:8.5pt;font-weight:700;letter-spacing:.08em;}
+.price .l .amt{font-size:23pt;font-weight:800;line-height:1.3;}
+.price .l .amt small{font-size:11pt;font-weight:600;color:#c9ccce;}
+.price .r{text-align:end;border-inline-start:1px solid rgba(255,255,255,.14);padding-inline-start:6mm;}
+.price .r div{font-size:9pt;color:#b9bcbf;margin-bottom:1mm;}
+.price .r b{color:#fff;font-weight:700;}
+
+.badge{display:inline-block;background:rgba(199,167,108,.14);color:var(--gold-dark);border:1px solid rgba(199,167,108,.4);
+  border-radius:20px;padding:1mm 4mm;font-size:8.5pt;font-weight:700;margin-bottom:3mm;align-self:flex-start;}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:9.2pt;margin-top:2mm;}
+th,td{padding:2.15mm 3mm;border-bottom:1px solid var(--border);text-align:start;}
+thead th{background:var(--dark);color:#fff;font-weight:700;font-size:9pt;}
+thead th:not(:first-child){text-align:center;}
+tbody td:not(:first-child){text-align:center;}
+tbody tr:nth-child(even){background:#fafaf8;}
+td.y{color:var(--gold-dark);font-weight:800;}
+td.n{color:#b9bcbc;}
+tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.5pt;border-top:2px solid var(--gold);}
+
+.cols{columns:2;column-gap:8mm;}
+.cols .grp{break-inside:avoid;margin-bottom:4.5mm;}
+.cols li{font-size:9.2pt;line-height:1.66;}
+.cols .grp-h h3{font-size:10.3pt;}
+.two{display:flex;gap:6mm;}
+.two>div{flex:1;}
+.box{border:1px solid var(--border);border-radius:3px;padding:5mm;break-inside:avoid;}
+.box h3{color:var(--gold-dark);font-size:10pt;}
+
+.foot{position:absolute;bottom:9mm;inset-inline:16mm;display:flex;justify-content:space-between;
+  font-size:8pt;color:#9aa0a5;border-top:1px solid var(--border);padding-top:3mm;}
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<section class="page cover">
+  <img class="cover-logo" src="__LOGO__" alt="">
+  <div>
+    <div class="cover-kicker">عرض سعر وخطة تنفيذ</div>
+    <h1>تطوير الموقع الإلكتروني<br>ولوحة تحكم <span>مجموعة الصديق</span></h1>
+    <div class="rule"></div>
+    <p class="sub">تحويل الموقع الحالي إلى نظام ديناميكي متكامل مبني على Laravel و Vue.js، مع لوحة تحكم تتيح إدارة المحتوى والعمليات الداخلية للشركة. يتضمن العرض ثلاث باقات متدرجة، لكل منها نطاق عمل وسعر ومدة تنفيذ محددة.</p>
+  </div>
+  <div class="cover-meta">
+    <div><div class="lbl">مُقدَّم إلى</div><div class="val">مجموعة الصديق</div></div>
+    <div><div class="lbl">تاريخ العرض</div><div class="val">١٧ سبتمبر ٢٠٢٦</div></div>
+    <div><div class="lbl">صلاحية العرض</div><div class="val">٣٠ يوماً</div></div>
+    <div><div class="lbl">عدد الباقات</div><div class="val">٣ باقات</div></div>
+  </div>
+</section>
+
+<!-- ================= INTRO ================= -->
+<section class="page">
+  <div class="sec-kicker">نظرة عامة</div>
+  <h2>الوضع الحالي وما سيتم تنفيذه</h2>
+  <p class="lead">الموقع الحالي عبارة عن صفحة واحدة ثابتة (HTML) — كل المحتوى من النصوص والصور والمشاريع وبيانات التواصل مكتوب داخل الكود، وأي تعديل بسيط يتطلب مبرمجاً. الهدف من هذا المشروع هو نقل الموقع إلى نظام ديناميكي تتحكم فيه الإدارة بالكامل دون الحاجة إلى أي خبرة برمجية.</p>
+
+  <div class="hr"></div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">١</span><h3>التقنيات المستخدمة</h3></div>
+    <ul>
+      <li><b>الواجهة الخلفية (API):</b> Laravel 12 مع قاعدة بيانات MySQL و Redis للتخزين المؤقت.</li>
+      <li><b>الموقع العام:</b> Nuxt 3 (Vue.js) بتقنية العرض من الخادم SSR — للحفاظ على ترتيب الموقع في محركات البحث ودعم اللغة العربية واتجاه RTL.</li>
+      <li><b>لوحة التحكم:</b> تطبيق Vue 3 منفصل وسريع، بواجهة عربية كاملة تعمل على الكمبيوتر والموبايل.</li>
+      <li><b>الاستضافة:</b> سيرفر واحد (VPS) مع نسخ احتياطي يومي لقاعدة البيانات والصور.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">٢</span><h3>أساس مشترك في جميع الباقات</h3></div>
+    <ul>
+      <li>نقل الموقع الحالي بالكامل بنفس الشكل والتصميم دون أي تغيير بصري.</li>
+      <li>نظام صلاحيات ومستخدمين متعدد المستويات مع تسجيل كل العمليات.</li>
+      <li>بنية جاهزة لإضافة لغة ثانية (الإنجليزية) مستقبلاً دون إعادة بناء.</li>
+      <li>تحسين السرعة وتوافق الموقع مع الجوال ومحركات البحث.</li>
+      <li>تسليم كود المشروع كاملاً + دليل استخدام مصوّر + جلسة تدريب للفريق.</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <b>ملاحظة مهمة:</b> الباقات متتابعة وليست منفصلة — الباقة الثانية تشمل كل ما في الأولى، والثالثة تشمل كل ما في الثانية. يمكن البدء بالباقة الأولى والترقية لاحقاً على مراحل دون إعادة بناء أو تكلفة مضاعفة، لأن الأساس التقني واحد.
+  </div>
+  <div class="foot"><span>عرض سعر — مجموعة الصديق</span><span>صفحة ٢</span></div>
+</section>
+
+<!-- ================= PLAN 1 ================= -->
+<section class="page">
+  <div class="badge">الباقة الأولى</div>
+  <h2><span class="num">١.</span> موقع ديناميكي + لوحة تحكم بالمحتوى</h2>
+  <p class="lead">تتحكم الإدارة في كل ما يظهر على الموقع: الألوان، الشعار، النصوص، المشاريع، بيانات التواصل — وتستقبل طلبات العملاء داخل لوحة التحكم بدلاً من البريد الإلكتروني.</p>
+  <div class="hr"></div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>الهوية والمظهر</h3></div>
+    <ul>
+      <li>تغيير <b>الشعار</b> (نسخة فاتحة وداكنة وأيقونة المتصفح) من لوحة التحكم مباشرة.</li>
+      <li>التحكم في <b>ألوان الموقع بالكامل</b> — اللون الذهبي والأسود والخلفيات — عبر منتقي ألوان.</li>
+      <li>التحكم في الخطوط وإعدادات الوضع الليلي.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>إدارة محتوى الموقع</h3></div>
+    <ul>
+      <li><b>القسم الرئيسي:</b> العنوان والوصف وصورة الخلفية وزر الدعوة للتواصل.</li>
+      <li><b>من نحن:</b> النص والصورة والأرقام والإحصائيات.</li>
+      <li><b>الخدمات:</b> إضافة وتعديل وحذف وإعادة ترتيب الخدمات (تصميم معماري، تنفيذ، مطابخ...).</li>
+      <li><b>المشاريع:</b> إضافة مشروع كامل بالاسم والتصنيف والوصف وصورة الغلاف <b>ومعرض صور داخلي</b>، مع الترتيب وتحديد المشاريع المميزة.</li>
+      <li><b>مراحل العمل</b> و<b>آراء العملاء</b> (مع إمكانية الإظهار والإخفاء).</li>
+      <li><b>بيانات التواصل:</b> الهاتف، واتساب، البريد، العنوان، الخريطة، وروابط السوشيال ميديا.</li>
+      <li><b>القوائم:</b> التحكم في روابط قائمة الموقع العلوية والسفلية.</li>
+      <li><b>مكتبة وسائط</b> لرفع الصور مع ضغطها وتحويلها تلقائياً لصيغة WebP السريعة.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>طلبات العملاء وتحسين الظهور</h3></div>
+    <ul>
+      <li>نموذج الحجز يُحفظ في <b>قاعدة بيانات الشركة</b> بدلاً من خدمة خارجية.</li>
+      <li>لوحة لمتابعة الطلبات بحالات (جديد / تم التواصل / تم التعاقد / مرفوض) مع الملاحظات والتصدير إلى Excel.</li>
+      <li><b>إشعار فوري</b> بكل طلب جديد على البريد والواتساب.</li>
+      <li>حماية من الرسائل المزعجة (reCAPTCHA + تحديد المعدل).</li>
+      <li>إدارة بيانات SEO لكل صفحة + خريطة موقع تلقائية + بيانات Google المنظمة.</li>
+    </ul>
+  </div>
+
+  <div class="price">
+    <div class="l">
+      <div class="lbl">إجمالي الباقة الأولى</div>
+      <div class="amt">٥٥٬٠٠٠ <small>جنيه مصري</small></div>
+    </div>
+    <div class="r">
+      <div>مدة التنفيذ: <b><span class="rng">٥ – ٧</span> أسابيع</b></div>
+      <div>الضمان: <b>شهران دعم مجاني</b></div>
+    </div>
+  </div>
+  <div class="foot"><span>الباقة الأولى</span><span>صفحة ٣</span></div>
+</section>
+
+<!-- ================= PLAN 2 ================= -->
+<section class="page">
+  <div class="badge">الباقة الثانية</div>
+  <h2><span class="num">٢.</span> الباقة الأولى + نظام إدارة الموارد (ERP)</h2>
+  <p class="lead">كل ما في الباقة الأولى، بالإضافة إلى نظام داخلي لإدارة الموظفين والحضور والرواتب والمشاريع داخل نفس لوحة التحكم.</p>
+  <div class="hr"></div>
+
+  <div class="cols">
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>شؤون الموظفين</h3></div>
+    <ul>
+      <li>الإدارات والأقسام والمسميات الوظيفية والهيكل التنظيمي.</li>
+      <li>ملف كامل لكل موظف: البيانات الشخصية، الرقم القومي، العقد ومدته، مكونات الراتب.</li>
+      <li><b>أرشيف مستندات</b> لكل موظف مع تنبيه آلي قبل انتهاء العقود والتراخيص.</li>
+      <li><b>بوابة الموظف:</b> يدخل الموظف ليرى ملفه وقسائم راتبه ويقدّم طلب إجازة.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>الحضور والانصراف والإجازات</h3></div>
+    <ul>
+      <li>تعريف <b>الورديات</b> وجداول العمل لكل موظف أو موقع.</li>
+      <li>تسجيل الحضور عبر <b>الموبايل مع تحديد الموقع الجغرافي</b> للمواقع الإنشائية، أو الربط بجهاز البصمة.</li>
+      <li>حساب آلي للتأخير والانصراف المبكر و<b>ساعات الإضافي</b>.</li>
+      <li>كشف حضور شهري لكل موظف مع إمكانية التعديل اليدوي بسجل موافقات.</li>
+      <li>أنواع الإجازات والأرصدة والعطلات الرسمية ودورة الموافقة على الطلبات.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>الرواتب وقسائم الراتب</h3></div>
+    <ul>
+      <li>هيكل رواتب مرن (أساسي + بدلات + خصومات) قابل للتعديل لكل موظف.</li>
+      <li>حساب <b>التأمينات الاجتماعية وضريبة الدخل</b> وفق الشرائح المصرية، بقواعد قابلة للتحديث سنوياً.</li>
+      <li>ترحيل آلي للإضافي والخصومات من نظام الحضور إلى كشف الرواتب.</li>
+      <li><b>مسيّر رواتب شهري</b> بمراجعة واعتماد وقفل.</li>
+      <li><b>قسيمة راتب PDF بالعربية</b> لكل موظف + ملف تحويل بنكي جاهز.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>إدارة المشاريع والمواقع</h3></div>
+    <ul>
+      <li>ملف مشروع داخلي: العميل، الموقع، المراحل، والنسبة المنجزة.</li>
+      <li>مهام بنظام لوحات وتوزيعها على الموظفين مع تتبع المواعيد.</li>
+      <li><b>تقرير يومي للموقع:</b> نسبة الإنجاز، العمالة، المعدات، وصور من الموقع.</li>
+      <li>ربط ساعات عمل الموظفين بالمشاريع + تقارير التكلفة البشرية لكل مشروع.</li>
+      <li>نشر المشروع المكتمل على الموقع العام بضغطة واحدة.</li>
+    </ul>
+  </div>
+  </div>
+
+  <div class="price">
+    <div class="l">
+      <div class="lbl">إجمالي الباقة الثانية (شاملة الأولى)</div>
+      <div class="amt">١٤٥٬٠٠٠ <small>جنيه مصري</small></div>
+    </div>
+    <div class="r">
+      <div>مدة التنفيذ: <b><span class="rng">١٥ – ١٩</span> أسبوعاً</b></div>
+      <div>الضمان: <b>٣ أشهر دعم مجاني</b></div>
+    </div>
+  </div>
+  <div class="foot"><span>الباقة الثانية</span><span>صفحة ٤</span></div>
+</section>
+
+<!-- ================= PLAN 3 ================= -->
+<section class="page">
+  <div class="badge">الباقة الثالثة</div>
+  <h2><span class="num">٣.</span> الباقة الثانية + النظام المحاسبي</h2>
+  <p class="lead">كل ما في الباقة الثانية، بالإضافة إلى نظام محاسبي كامل بالقيد المزدوج مصمم خصيصاً لشركات المقاولات — بفواتير مستخلصات ومحتجزات وتكلفة فعلية لكل مشروع.</p>
+  <div class="hr"></div>
+
+  <div class="cols">
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>الأساس المحاسبي</h3></div>
+    <ul>
+      <li><b>دليل حسابات</b> شجري + سنوات وفترات مالية مع الإقفال والقفل.</li>
+      <li><b>قيود يومية بالقيد المزدوج</b> — لا حذف نهائياً، تعديل بقيود عكسية فقط.</li>
+      <li>تعدد العملات (جنيه / دولار / يورو) مع أسعار الصرف.</li>
+      <li>اعتبار كل مشروع <b>مركز تكلفة مستقل</b>.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>المبيعات والفواتير والتحصيل</h3></div>
+    <ul>
+      <li>ملفات العملاء + <b>عروض الأسعار</b> وتحويلها إلى عقود.</li>
+      <li><b>فواتير المستخلصات</b> (الفوترة بنسبة الإنجاز) — الأهم في أعمال المقاولات.</li>
+      <li>معالجة <b>المبالغ المحتجزة</b> وخصم الدفعة المقدمة تلقائياً.</li>
+      <li>ضريبة القيمة المضافة ١٤٪ وضريبة الخصم والإضافة، وإشعارات الخصم.</li>
+      <li>إيصالات التحصيل + <b>أعمار الديون</b> وكشف حساب لكل عميل.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>المشتريات والموردين والخزينة</h3></div>
+    <ul>
+      <li>ملفات الموردين ومقاولي الباطن + <b>أوامر الشراء</b> واستلام التوريدات.</li>
+      <li>فواتير الموردين و<b>مستخلصات مقاولي الباطن</b> وسداداتها.</li>
+      <li>المصروفات وعُهد النثرية والحسابات البنكية و<b>التسوية البنكية</b>.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>الربط والتقارير</h3></div>
+    <ul>
+      <li>ترحيل آلي لمسيّر الرواتب إلى القيود المحاسبية.</li>
+      <li><b>ربحية كل مشروع:</b> الموازنة مقابل المنصرف الفعلي مقابل المرتبط.</li>
+      <li>ميزان المراجعة، قائمة الدخل، المركز المالي، التدفقات النقدية، وإقرار القيمة المضافة.</li>
+      <li>صلاحيات مالية دقيقة وسجل تدقيق كامل لكل عملية مالية.</li>
+    </ul>
+  </div>
+  </div>
+
+  <div class="price">
+    <div class="l">
+      <div class="lbl">إجمالي الباقة الثالثة (شاملة الأولى والثانية)</div>
+      <div class="amt">٢٩٥٬٠٠٠ <small>جنيه مصري</small></div>
+    </div>
+    <div class="r">
+      <div>مدة التنفيذ: <b><span class="rng">٢٦ – ٣٣</span> أسبوعاً</b></div>
+      <div>الضمان: <b>٤ أشهر دعم مجاني</b></div>
+    </div>
+  </div>
+  <div class="foot"><span>الباقة الثالثة</span><span>صفحة ٥</span></div>
+</section>
+
+<!-- ================= COMPARISON ================= -->
+<section class="page">
+  <div class="sec-kicker">مقارنة سريعة</div>
+  <h2>ملخص الباقات والأسعار</h2>
+
+  <table>
+    <thead>
+      <tr><th>البند</th><th>الأولى</th><th>الثانية</th><th>الثالثة</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>موقع ديناميكي بالكامل (ألوان، شعار، نصوص، تواصل)</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>إدارة المشاريع ومعارض الصور والخدمات</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>استقبال طلبات العملاء وإدارتها</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>تحسين محركات البحث SEO</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>إدارة الموظفين والعقود والمستندات</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>الحضور والانصراف والورديات والإجازات</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>الرواتب وقسائم الراتب والتأمينات</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>إدارة المشاريع الداخلية والتقارير اليومية</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>فواتير المستخلصات والمحتجزات والتحصيل</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>الموردين ومقاولي الباطن والمشتريات</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>القيد المزدوج والقوائم المالية</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>ربحية المشاريع والتكلفة الفعلية</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>مدة التنفيذ التقريبية</td><td><span class="rng">٥ – ٧</span> أسابيع</td><td><span class="rng">١٥ – ١٩</span> أسبوع</td><td><span class="rng">٢٦ – ٣٣</span> أسبوع</td></tr>
+      <tr><td>الدعم المجاني بعد التسليم</td><td>شهران</td><td>٣ أشهر</td><td>٤ أشهر</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td>الإجمالي (جنيه مصري)</td><td>٥٥٬٠٠٠</td><td>١٤٥٬٠٠٠</td><td>٢٩٥٬٠٠٠</td></tr>
+    </tfoot>
+  </table>
+
+  <div class="hr" style="margin:5mm 0;"></div>
+
+  <div class="two">
+    <div class="box">
+      <h3>خيار التقسيط على مراحل</h3>
+      <p style="font-size:9.5pt;line-height:1.85;">يمكن البدء بالباقة الأولى الآن (٥٥٬٠٠٠ ج.م) وإضافة نظام الـ ERP لاحقاً بفارق <b>٩٠٬٠٠٠ ج.م</b>، ثم النظام المحاسبي بفارق <b>١٥٠٬٠٠٠ ج.م</b> — بنفس الإجمالي ودون أي تكلفة إعادة بناء، لأن الأساس التقني واحد منذ البداية.</p>
+    </div>
+    <div class="box">
+      <h3>توصيتنا</h3>
+      <p style="font-size:9.5pt;line-height:1.85;">البدء بـ<b>الباقة الأولى</b> وتشغيلها فعلياً، لأنها الجزء الوحيد المرتبط بموعد خارجي (الموقع الحالي) وتبدأ في تحقيق عائد فوري من طلبات العملاء، ثم الانتقال للمراحل التالية بعد استقرارها.</p>
+    </div>
+  </div>
+  <div class="foot"><span>مقارنة الباقات</span><span>صفحة ٦</span></div>
+</section>
+
+<!-- ================= TERMS ================= -->
+<section class="page">
+  <div class="sec-kicker">الشروط</div>
+  <h2>الدفعات والتكاليف والملاحظات</h2>
+
+  <div class="hr"></div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>جدول الدفعات</h3></div>
+    <ul>
+      <li><b>٣٠٪</b> دفعة مقدمة عند التعاقد وبدء العمل.</li>
+      <li><b>٤٠٪</b> عند تسليم النسخة التجريبية للمراجعة على سيرفر الاختبار.</li>
+      <li><b>٣٠٪</b> عند التسليم النهائي والرفع على السيرفر المباشر.</li>
+      <li>في الباقتين الثانية والثالثة تُقسَّم الدفعات على مراحل الوحدات (موارد بشرية / حضور / رواتب / محاسبة) بالاتفاق.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>تكاليف سنوية (على الشركة ولا تُدفع لنا)</h3></div>
+    <ul>
+      <li>استضافة السيرفر (VPS): تقريباً <b><span class="rng">٦٬٠٠٠ – ١٢٬٠٠٠</span> ج.م سنوياً</b> حسب حجم النظام والباقة المختارة.</li>
+      <li>اسم النطاق والشهادة الأمنية: تقريباً <b><span class="rng">٨٠٠ – ١٬٥٠٠</span> ج.م سنوياً</b>.</li>
+      <li>خدمة إرسال البريد وإشعارات الواتساب (اختيارية حسب الاستخدام).</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>الدعم والصيانة بعد فترة الضمان</h3></div>
+    <ul>
+      <li>عقد صيانة شهري اختياري يشمل المتابعة والنسخ الاحتياطي والتحديثات الأمنية والتعديلات البسيطة.</li>
+      <li>القيمة التقريبية: <b><span class="rng">٢٬٠٠٠ – ٤٬٥٠٠</span> ج.م شهرياً</b> حسب الباقة.</li>
+    </ul>
+  </div>
+
+  <div class="grp">
+    <div class="grp-h"><span class="dot">✦</span><h3>غير مشمول في العرض</h3></div>
+    <ul>
+      <li>إعادة تصميم هوية الموقع أو الشعار (سيتم الالتزام بالتصميم الحالي).</li>
+      <li>كتابة المحتوى والتصوير الفوتوغرافي للمشاريع.</li>
+      <li>إضافة اللغة الإنجليزية للمحتوى (البنية جاهزة لها، والترجمة والتنفيذ بعرض منفصل).</li>
+      <li><b>الربط بمنظومة الفاتورة الإلكترونية لمصلحة الضرائب (ETA)</b> — بعرض منفصل تقديرياً <b>٤٥٬٠٠٠ ج.م</b> لأنه مشروع قائم بذاته.</li>
+      <li>تطبيق موبايل أصلي (يمكن استخدام النظام من متصفح الموبايل كتطبيق PWA).</li>
+      <li>أجهزة البصمة أو تكلفة الربط بجهاز غير قياسي لا يدعم التصدير أو الـ API.</li>
+    </ul>
+  </div>
+
+  <div class="note" style="margin-top:2mm;">
+    <b>مسؤوليات العميل:</b> توفير المحتوى والصور وبيانات الموظفين والأرصدة الافتتاحية في مواعيدها، وتخصيص شخص مسؤول للمراجعة والاعتماد في كل مرحلة، ومشاركة المحاسب في مرحلة النظام المحاسبي. التأخير في هذه النقاط يؤدي إلى تأخير مماثل في مدة التنفيذ.
+    <br><br>
+    الأسعار <b>غير شاملة ضريبة القيمة المضافة</b>، وصالحة لمدة ٣٠ يوماً من تاريخ العرض.
+  </div>
+
+  <div class="foot"><span>الشروط والأحكام</span><span>صفحة ٧</span></div>
+</section>
+
+</body>
+</html>
