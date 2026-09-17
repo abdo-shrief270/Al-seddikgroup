@@ -131,8 +131,8 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
   <div class="grp">
     <div class="grp-h"><span class="dot">١</span><h3>كيف تم تخفيض السعر؟ بتغيير نطاق العمل وليس بتقليل الجودة</h3></div>
     <ul>
-      <li><b>الباقتان الأولى والثانية:</b> نحتفظ بتصميم الموقع الحالي كما هو ونحوّله إلى قوالب ديناميكية على Laravel مباشرة — بدون إعادة بناء الواجهة بـ Vue. هذا يوفّر أكثر من نصف وقت العمل، ويعمل على <b>استضافة عادية رخيصة (cPanel)</b> بدون سيرفر خاص.</li>
-      <li><b>من الباقة الثالثة فأعلى:</b> إعادة بناء كاملة بـ Vue.js / Nuxt مع API منفصل — وهي الخطوة التي تحتاج سيرفراً خاصاً (VPS) ووقت عمل أكبر.</li>
+      <li><b>الباقتان الأولى والثانية:</b> نحتفظ بتصميم الموقع الحالي كما هو ونحوّله إلى قوالب ديناميكية على Laravel مباشرة — بدون إعادة بناء الواجهة بـ Vue. هذا يوفّر أكثر من نصف وقت العمل، وينعكس مباشرة على السعر.</li>
+      <li><b>من الباقة الثالثة فأعلى:</b> إعادة بناء كاملة بـ Vue.js / Nuxt مع API منفصل — وهي الخطوة التي تحتاج وقت عمل أكبر.</li>
       <li><b>في كل الحالات:</b> قاعدة البيانات وبنية النظام واحدة منذ الباقة الأولى، لذلك <b>الترقية لاحقاً لا تعني إعادة بناء</b> — تُدفع الفروق فقط.</li>
     </ul>
   </div>
@@ -142,7 +142,7 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
     <ul>
       <li>الحفاظ على شكل الموقع وتصميمه الحالي دون أي تغيير بصري.</li>
       <li>لوحة تحكم عربية تعمل على الكمبيوتر والموبايل، بنظام مستخدمين وصلاحيات.</li>
-      <li>رفع الموقع على السيرفر + نقل المحتوى الحالي + نسخة احتياطية.</li>
+      <li>رفع الموقع وتشغيله + نقل المحتوى الحالي + نسخة احتياطية.</li>
       <li>تسليم كود المشروع كاملاً + شرح استخدام للفريق.</li>
     </ul>
   </div>
@@ -191,9 +191,7 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
       <div class="amt">١٢٬٠٠٠ <small>جنيه مصري</small></div>
     </div>
     <div class="r">
-      <div>مدة التنفيذ: <b>أسبوعان</b></div>
       <div>الدعم المجاني: <b>شهر</b></div>
-      <div>الاستضافة: <b>عادية (cPanel)</b></div>
     </div>
   </div>
   <div class="foot"><span>الباقة الأولى — الأساسية</span><span>صفحة ٣</span></div>
@@ -245,9 +243,7 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
       <div class="amt">٢٨٬٠٠٠ <small>جنيه مصري</small></div>
     </div>
     <div class="r">
-      <div>مدة التنفيذ: <b><span class="rng">٣ – ٤</span> أسابيع</b></div>
       <div>الدعم المجاني: <b>شهر</b></div>
-      <div>الاستضافة: <b>عادية (cPanel)</b></div>
     </div>
   </div>
   <div class="foot"><span>الباقة الثانية — المتقدمة</span><span>صفحة ٤</span></div>
@@ -267,7 +263,7 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
       <li><b>Laravel 12 API</b> منفصل بالكامل + <b>Nuxt 3</b> للموقع بتقنية العرض من الخادم (SSR) للحفاظ على ترتيب الموقع في جوجل.</li>
       <li><b>لوحة تحكم Vue 3</b> حديثة وسريعة بواجهة عربية كاملة.</li>
       <li>تخزين مؤقت بـ Redis وتحسين سرعة التحميل.</li>
-      <li>سيرفر خاص (VPS) مُجهّز ومؤمَّن بالكامل مع شهادة SSL.</li>
+      <li>تجهيز بيئة التشغيل وتأمينها بالكامل مع شهادة SSL.</li>
     </ul>
   </div>
 
@@ -290,9 +286,7 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
       <div class="amt">٥٥٬٠٠٠ <small>جنيه مصري</small></div>
     </div>
     <div class="r">
-      <div>مدة التنفيذ: <b><span class="rng">٦ – ٨</span> أسابيع</b></div>
       <div>الدعم المجاني: <b>شهران</b></div>
-      <div>الاستضافة: <b>سيرفر خاص VPS</b></div>
     </div>
   </div>
   <div class="foot"><span>الباقة الثالثة — الاحترافية</span><span>صفحة ٥</span></div>
@@ -354,7 +348,6 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
       <div class="amt">٩٥٬٠٠٠ <small>جنيه مصري</small></div>
     </div>
     <div class="r">
-      <div>مدة التنفيذ: <b><span class="rng">١٠ – ١٣</span> أسبوعاً</b></div>
       <div>الدعم المجاني: <b>٣ أشهر</b></div>
     </div>
   </div>
@@ -412,7 +405,6 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
       <div class="amt">١٥٠٬٠٠٠ <small>جنيه مصري</small></div>
     </div>
     <div class="r">
-      <div>مدة التنفيذ: <b><span class="rng">١٨ – ٢٢</span> أسبوعاً</b></div>
       <div>الدعم المجاني: <b>٣ أشهر</b></div>
     </div>
   </div>
@@ -443,8 +435,6 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
       <tr><td>فواتير المستخلصات والمحتجزات والتحصيل</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
       <tr><td>الموردون ومقاولو الباطن والمصروفات</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
       <tr><td>ربحية المشاريع والتقارير المالية</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>مدة التنفيذ</td><td>أسبوعان</td><td><span class="rng">٣ – ٤</span> أسابيع</td><td><span class="rng">٦ – ٨</span> أسابيع</td><td><span class="rng">١٠ – ١٣</span> أسبوع</td><td><span class="rng">١٨ – ٢٢</span> أسبوع</td></tr>
-      <tr><td>نوع الاستضافة المطلوبة</td><td>عادية</td><td>عادية</td><td>سيرفر خاص</td><td>سيرفر خاص</td><td>سيرفر خاص</td></tr>
       <tr><td>الدعم المجاني بعد التسليم</td><td>شهر</td><td>شهر</td><td>شهران</td><td>٣ أشهر</td><td>٣ أشهر</td></tr>
     </tbody>
     <tfoot>
@@ -486,8 +476,6 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
   <div class="grp">
     <div class="grp-h"><span class="dot">✦</span><h3>تكاليف سنوية (على الشركة ولا تُدفع لنا)</h3></div>
     <ul>
-      <li><b>الباقتان الأولى والثانية:</b> استضافة عادية تقريباً <b><span class="rng">١٬٥٠٠ – ٣٬٠٠٠</span> ج.م سنوياً</b>.</li>
-      <li><b>من الثالثة فأعلى:</b> سيرفر خاص (VPS) تقريباً <b><span class="rng">٦٬٠٠٠ – ١٢٬٠٠٠</span> ج.م سنوياً</b>.</li>
       <li>اسم النطاق والشهادة الأمنية: <b><span class="rng">٨٠٠ – ١٬٥٠٠</span> ج.م سنوياً</b>.</li>
       <li>خدمة إشعارات الواتساب (اختيارية حسب الاستخدام).</li>
     </ul>
@@ -497,7 +485,7 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
     <div class="grp-h"><span class="dot">✦</span><h3>الصيانة بعد فترة الدعم المجاني</h3></div>
     <ul>
       <li>عقد شهري اختياري يشمل المتابعة والنسخ الاحتياطي والتحديثات الأمنية والتعديلات البسيطة.</li>
-      <li>تقريباً <b><span class="rng">٧٥٠ – ٣٬٥٠٠</span> ج.م شهرياً</b> حسب الباقة.</li>
+      <li>تُحدَّد قيمته حسب الباقة ونطاق المتابعة المطلوب، بالاتفاق عند انتهاء فترة الدعم المجاني.</li>
     </ul>
   </div>
 
@@ -516,7 +504,7 @@ tfoot td{background:var(--light);font-weight:800;color:var(--dark);font-size:10.
   </div>
 
   <div class="note" style="margin-top:2mm;">
-    <b>مسؤوليات العميل:</b> توفير المحتوى والصور وبيانات الموظفين والأرصدة الافتتاحية في مواعيدها، وتخصيص شخص مسؤول للمراجعة والاعتماد في كل مرحلة. التأخير في هذه النقاط يؤدي إلى تأخير مماثل في مدة التنفيذ.
+    <b>مسؤوليات العميل:</b> توفير المحتوى والصور وبيانات الموظفين والأرصدة الافتتاحية في مواعيدها، وتخصيص شخص مسؤول للمراجعة والاعتماد في كل مرحلة. التأخير في هذه النقاط يؤدي إلى تأخير مماثل في تسليم المشروع.
     <br><br>
     الأسعار <b>غير شاملة ضريبة القيمة المضافة</b>، وصالحة لمدة ٣٠ يوماً من تاريخ العرض.
   </div>
